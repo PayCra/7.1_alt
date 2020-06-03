@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// const picturesOfJiLi = [
+//   "纪李/jili0.jpeg",
+//   "纪李/jili1.jpg",
+//   "纪李/jili2.jpg",
+//   "纪李/jili3.jpg",
+//   "纪李/jili4.jpg"];
+
+let myNumber = Math.floor(Math.random() * 5);
+
+class App extends React.Component {
+
+  state = {
+    link: myNumber===0 ? "纪李/jili" + myNumber + ".jpeg" : "纪李/jili" + myNumber + ".jpg"
+  };
+
+  handleClick = () => {
+    myNumber = (myNumber + 1 + Math.floor(Math.random()*100) % 4) % 5;
+    this.setState({link: myNumber===0 ? "纪李/jili" + myNumber + ".jpeg" : "纪李/jili" + myNumber + ".jpg"})
+  };
+
+  render() {
+    return (
+        <div>
+          Click on the picture to shuffle Ji Li pics:
+          <div>
+            <img src={this.state.link} alt={"unable to load Ji Li"} onClick={this.handleClick}/>
+          </div>
+        </div>
+    )
+  }
 }
 
 export default App;
